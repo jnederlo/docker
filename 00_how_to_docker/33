@@ -1,0 +1,2 @@
+# first make sure the char docker-machine is active
+docker rmi $(docker images -q)
