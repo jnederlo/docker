@@ -1,2 +1,1 @@
-#docker run -dt alpine && docker exec -it $(docker ps -lq) /bin/sh && docker kill $(docker ps -lq)
 docker run -it --rm alpine

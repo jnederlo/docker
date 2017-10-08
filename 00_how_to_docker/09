@@ -1,2 +1,2 @@
-apt-get update && apt-get upgrade
+apt-get update && apt-get upgrade -y
 apt-get install build-essential -y && apt-get install git-core -y

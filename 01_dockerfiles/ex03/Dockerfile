@@ -5,7 +5,8 @@ RUN			apt-get update && \
 			apt-get install wget -y
 
 RUN			apt-get update && \
-			apt-get install -y mysql-server mysql-client
+			apt-get install -y --no-install-recommends build-essential ca-certificates \
+			git golang-go sqlite libsqlite3-dev openssl openssh-server -y
 
 WORKDIR		/usr/local
 RUN			wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
@@ -19,8 +20,10 @@ WORKDIR		$GOPATH/src/github.com/gogits
 RUN			git clone --depth=1 -b develop https://github.com/gogits/gogs
 
 WORKDIR		$GOPATH/src/github.com/gogits/gogs
-RUN			go build
+RUN			go build -v -tags 'sqlite'
 
+ENV			USER="root"
 EXPOSE		3000
+USER		root
 
 CMD			["./gogs", "web"]
